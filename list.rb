@@ -1,30 +1,45 @@
+## 
+# This class represents a node of a linked list
+
 class Node
+
     attr_accessor :next_node, :val
+
+    # Creates a new node pointing to +next_node+ with a value of +val+
+    # Params:
+    # +next_node+:: next node in the list 
+    # +val+:: value of the node
     def initialize(next_node, val)
         @next = next_node
         @val = val
     end
 
+    # Inserts a new +node+ into the +node_list+. 
+    # Assumes +node_list+ is sorted
+    # Returns the new head of the list
+    # Params:
+    # +node+:: the node to be inserted into the list
+    # +node_list+:: the head of the sorted list
     def insert(node, node_list)
         curr_node = node_list
         node_value = node.val
-        # if there is no head then the to be inserted node becomes the head 
+        # If the head of the list is nil, node becomes the head
         if(curr_node == nil)
             return node
         end
-        #while the current node is not nil
+        # Iterate over the whole linked list
         while(curr_node != nil)
-            #adding it to the beginnig of the list
+            # If the node value is less than the first node, insert it in the beginning
             if(curr_node.next_node == nil && node_value < curr_node.val)
                 temp_node = node_list
                 node_list = node
                 node.next_node = temp_node
                 return node
-            #adding it to the end of the list
+            # If the node value is more than the last node, insert it in the end
             elsif(curr_node.next_node == nil && node_value => curr_node.val)
                 curr_node.next_node = node
                 return node_list
-            #adding it in the middle of the list 
+            # Otherwise, add the node in between two elements 
             elsif((node_value => curr_node.val || node_value > curr_node.val) && node_value < curr_node.next_node.val)
                 temp_node = curr_node.next_node
                 curr_node.next_node = node
@@ -32,12 +47,13 @@ class Node
                 puts "#{curr_node.val} #{node.val} #{node.next_node.val}"
                 return node_list
             end
-            #iterate
+            # Set the current node to the next node in the list
             curr_node = curr_node.next_node
         end
     end
 
-    #display all nodes given the head of a list
+    # Display all nodes in the list
+    # +node+:: The head of the linked list
     def display_all(node)
         curr_node = node
         while(curr_node != nil)
@@ -47,7 +63,7 @@ class Node
     end
 end
 
-#test case
+# Simple test of inserting nodes out of order to confirm that the list stays sorted
 head = Node.new(nil, 10)
 new_node = Node.new(nil, 5)
 new_node2 = Node.new(nil, 7)

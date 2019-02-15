@@ -8,3 +8,6 @@ should have the largest.
 
 1. If the head of the list is null, then the inserted node becomes the head.
 2. If the value of the new node is equal to the value of the current node, the new node is inserted after the current node.
+
+## To Do
+1. Automate tests with rspec for use cases
